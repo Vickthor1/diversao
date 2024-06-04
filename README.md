@@ -1,5 +1,8 @@
 # códigos para entretenimento🎉
-<body style="background-color:white;">
+<style>
+  body{background-color:white;}
+</style>
+<body>
 * No caso de uso dar os créditos⚠❗
 * Use a vontade e se divirta✨
 <br><br>
