@@ -1,19 +1,11 @@
 import random
 print('---Cadastro da Biblioteca---')
 usuarios = ['adm']
-senhas = ["2023202420232024"]
-a = "!@#$%¨&*"
-V = [mascarada.replace("1","V")
-     .replace("2",(random.choice(a)))
-     .replace('3',(random.choice(a)))
-     .replace('4',(random.choice(a)))
-     .replace('5',(random.choice(a)))
-     .replace('6',(random.choice(a)))
-     .replace('7',(random.choice(a)))
-     .replace('8',(random.choice(a)))
-     .replace('9',(random.choice(a)))
-     .replace("0",(random.choice(a)))
-     for mascarada in senhas]
+senhas = ["12345"]
+
+def mascarar_senha(senhas):
+    return "*" * len(senhas)
+
 def registro():
     while True:
         print("Se deseja adicionar um novo usuário digite 1")
@@ -25,11 +17,11 @@ def registro():
 
         if escolha == "1":
             print('-Adicionar usuário-')
-            nome = str(input(' '))
+            nome = str(input('Nome do Usuário: '))
             print("")
             usuarios.append(nome)
             
-            senha = int(input(' '))
+            senha = str(input('Senha Usuário: '))
             print("")
             senhas.append(senha)
             print("Cadastro finalizado. Usuários cadastrados!")
@@ -44,11 +36,8 @@ def registro():
             nome = str(input("Digite o Nome do usuário: "))
             print("")
             if nome in usuarios:
-                x = usuarios.index(nome)
-                senha = str(input("Digite a senha do usuário: "))
-                print("")
-                if senha in senhas[x]:
-                    print('Login efetuado com sucesso!')
+                try:
+                    senha = str(input("Digite a senha do usuário:"))
                     print("")
                     print("Deseja sair? 1-Sim/2-Não")
                     resp = int(input(" "))
@@ -56,9 +45,10 @@ def registro():
                         break
                     if resp == 2:
                         pass
-                else:
+                except:
                     print("Senha de usuário incorreta")
-                    pass
+                    print("")
+                    continue
                 
             else:
                 print('Usuário não encontrado!')
@@ -70,10 +60,10 @@ def registro():
             
             print("")    
             print("Deseja sair? 1-Sim/2-Não")
-            x = int(input(" "))
-            if x == 1:
+            resp = int(input(" "))
+            if resp == 1:
                 break
-            if x == 2:
+            if resp == 2:
                 pass
             
         if escolha == "4":
@@ -84,8 +74,9 @@ def registro():
             print("")
             print("Opção inválida. Tente novamente.")
             pass
+        
 
 registro()
 
 for i in range(len(usuarios)):
-    print("usuário: ",usuarios[i],"/ Senha: ",V[i])
+    print("usuário: ",usuarios[i]," / Senha: ",mascarar_senha(str(senhas[i])))
