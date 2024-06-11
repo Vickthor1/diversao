@@ -1,58 +1,101 @@
 print('---Cadastro da Biblioteca---')
 usuarios = ['adm']
-senhas = [2023202420232024]
+senhas = ["12345"]
 
-while True:
-    print("Se deseja adicionar um novo usuário digite 1")
-    print("Se deseja fazer login 2")
-    print("Se deseja acessar a lista de usuários 3")
-    print("Se deseja sair digite 4")
-    escolha = input("Digite sua escolha: ")
+def mascarar_senha(senhas):
+    return "*" * len(senhas)
 
-    if escolha == "1":
-        print('-Adicionar usuário-')
-        nome = str(input(' '))
-        nome.append(usuarios)
-        usuarios.sort()
-        
-        senha = int(input(' '))
-        senha.append(senhas)
-        senhas.sort()
-        print("Cadastro finalizado. Usuários cadastrados!")
-    
-    elif escolha == "2":
-        nome = str(input("Digite o Nome do usuário: "))
-        x = usuarios.index(nome)
-        if nome in usuarios:
-            senha = int(input("Digite a senha do usuário: "))
-            if senha in senhas[x]:
-                print('Login efetuado com sucesso!')
+def registro():
+    while True:
+        print("Se deseja adicionar um novo usuário digite 1")
+        print("Se deseja fazer login 2")
+        print("Se deseja acessar a lista de usuários 3")
+        print("Se deseja sair digite 4")
+        escolha = input("Digite sua escolha: ")
+        print("")
+
+        if escolha == "1":
+            print('-Adicionar usuário-')
+            nome = str(input('Nome do Usuário: '))
+            print("")
+            usuarios.append(nome)
+            
+            senha = str(input('Senha Usuário: '))
+            print("")
+            senhas.append(senha)
+            print("Cadastro finalizado. Usuários cadastrados!")
+            print("")
+            x = int(input("Deseja sair? 1-Sim/2-Não "))
+            if x == 1:
                 break
+            if x == 2:
+                pass
+        
+        elif escolha == "2":
+            nome = str(input("Digite o Nome do usuário: "))
+            print("")
+            if nome in usuarios:
+                try:
+                    senha = str(input("Digite a senha do usuário:"))
+                    print("")
+                    print("Deseja sair? 1-Sim/2-Não")
+                    resp = int(input(" "))
+                    if resp == 1:
+                        break
+                    if resp == 2:
+                        pass
+                except:
+                    print("Senha de usuário incorreta")
+                    print("")
+                    continue
+                
             else:
-                print("Senha de usuário incorreta")
+                print('Usuário não encontrado!')
+            pass
+        elif escolha == "3":
+            print("Usuários:")
+            for user in usuarios:
+                print(user)
+            
+            print("")    
+            print("Deseja sair? 1-Sim/2-Não")
+            resp = int(input(" "))
+            if resp == 1:
+                break
+            if resp == 2:
                 pass
             
-        else:
-            print('Usuário não encontrado!')
-        pass
-    elif escolha == "3":
-        print("Usuários:")
-        for user in usuarios:
-            print(user)
-            
-        print("Deseja sair? 1-Sim/2-Não")
-        x = int(input(" "))
-        if x == 1:
+        if escolha == "4":
+            print('Até breve!')
             break
-        if x == 2:
+        
+        else:
+            print("")
+            print("Opção inválida. Tente novamente.")
             pass
         
-    if escolha == "4":
-        print('Até brave!')
-        break
+
+registro()
+
+for i in range(len(usuarios)):
+    print("usuário: ",usuarios[i]," / Senha: ",mascarar_senha(str(senhas[i])))
+
+def dados():
+    try:
+        nome = ("dados de usuários da biblioteca.txt")
+        arquivo = open(nome,"r")
+        arquivo.writelines(f'usuarios: {usuarios}\nSenhas: {senhas}')
+        
+    except FileNotFoundError:
+        arquivo = open(nome,"w")
+        print("-ARQUIVO CRIADO-")
+        arquivo.writelines(f'usuarios: {usuarios}\nSenhas: {senhas}')
     
-    else:
-        print("Opção inválida. Tente novamente.")
-        pass
+    except:
+        arquivo = open(nome,"r")
+        arquivo.readlines()
     
-print(senhas,usuarios)
+    finally:
+        arquivo.close()
+        
+dados()
