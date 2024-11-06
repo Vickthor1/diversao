@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dentro</title>
+</head>
+<style>
+
+    h1{
+        font-size: 200px;
+        font-family:fantasy;
+        text-align: center;
+        background-image: url("https://c4.wallpaperflare.com/wallpaper/262/762/503/anime-girls-vocaloid-fan-art-hatsune-miku-wallpaper-preview.jpg");
+        background-repeat: no-repeat;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
+    .miku::before{
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 800px;
+        height: 300px;
+        background: url("https://c4.wallpaperflare.com/wallpaper/262/762/503/anime-girls-vocaloid-fan-art-hatsune-miku-wallpaper-preview.jpg");
+        background-size: cover;
+        background-position: bottom;
+        z-index: -1;
+        opacity: 0.5;
+    }
+</style>
+<body>
+    <div class="miku">  
+        <h1>HATSUNE</h1>
+    </div>
+</body>
+</html>
